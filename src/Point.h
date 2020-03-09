@@ -8,6 +8,7 @@
 #include <cmath>
 #include <ostream>
 #include <iomanip>
+#include <sstream>
 
 typedef long long ll;
 
@@ -44,13 +45,24 @@ public:
     bool isInf() const {
         return isNan;
     }
+
+    std::size_t hashCode() const {
+        if (isRational) {
+            std::size_t h1 = std::hash<long long>{}(top);
+            std::size_t h2 = std::hash<long long>{}(bottom);
+            return ((h1 ^ (h2 << 1u)) << 1u) | 1u;
+        } else {
+            std::size_t h = std::hash<double>{}(value);
+            return (h << 1u) | 0u;
+        }
+    }
 };
 
 
 class Point {
-private:
-    Coordinate x, y;
 public:
+    Coordinate x, y;
+
     Point(Coordinate xx, Coordinate yy);
 
     Point() = default;
@@ -59,5 +71,25 @@ public:
 };
 
 ll fastGcd(ll x, ll y);
+
+
+// Hash Function For Point objects in support of unordered_map<Point>
+struct hashCode_Point {
+    std::size_t operator()(const Point &point) const {
+        std::size_t h1 = point.x.hashCode();
+        std::size_t h2 = point.y.hashCode();
+        return h1 ^ (h2 << 1u);
+    }
+};
+
+struct equals_Point {
+    bool operator()(const Point &lhs, const Point &rhs) const {
+        std::ostringstream outstream1, outstream2;
+        outstream1 << lhs;
+        outstream2 << rhs;
+        return outstream1.str() == outstream2.str();
+    }
+};
+
 
 #endif //GEOMETRY_POINT_H
