@@ -1,7 +1,19 @@
 #include <iostream>
+#include <unordered_set>
 #include "Shapes.h"
 
-int main() {
+int main(int argc, char *argv[]) {
+    // handle arguments & freopen
+    for (int i = 0; i < argc; ++i) {
+        if (strcmp(argv[i], "-i") == 0) {
+            freopen(argv[i + 1], "r", stdin);
+        }
+        if (strcmp(argv[i], "-o") == 0) {
+            freopen(argv[i + 1], "w", stdout);
+        }
+    }
+
+    // main content
     int objCount;
     std::cin >> objCount;
     auto *objs = new std::vector<Geometry>();
@@ -23,12 +35,14 @@ int main() {
     }
 
     objCount = objs->size();
+    std::unordered_set<Point, hashCode_Point, equals_Point> container;
     for (int i = 0; i < objCount; ++i) {
         for (int j = i + 1; j < objCount; ++j) {
             std::vector<Point> intersections = std::visit(interset_visitor{}, (*objs)[i], (*objs)[j]);
             for (Point p: intersections)
-                std::cout << p << std::endl;
+                container.insert(p);
         }
     }
+    std::cout << container.size() << std::endl;
     return 0;
 }

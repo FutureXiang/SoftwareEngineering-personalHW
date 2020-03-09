@@ -10,7 +10,7 @@ Circle::Circle(int x, int y, int r) : center_x(x), center_y(y), radius(r) {}
 
 
 std::vector<Point> intersection(Line a, Circle b) {
-    std::cout << "Line - Circle!\n";
+//    std::cout << "Line - Circle!\n";
     std::vector<Point> container;
     // https://mathworld.wolfram.com/Circle-LineIntersection.html
     int x1 = a.p1_x - b.center_x;
@@ -40,14 +40,14 @@ std::vector<Point> intersection(Line a, Circle b) {
 }
 
 std::vector<Point> intersection(Circle a, Line b) {
-    std::cout << "Circle - Line!\n";
+//    std::cout << "Circle - Line!\n";
     return intersection(b, a);
 }
 
 std::vector<Point> intersection(Line a, Line b) {
     std::vector<Point> container;
     // https://en.wikipedia.org/wiki/Line–line_intersection
-    std::cout << "Line - Line!\n";
+//    std::cout << "Line - Line!\n";
     ll x1 = a.p1_x, y1 = a.p1_y;
     ll x2 = a.p2_x, y2 = a.p2_y;
     ll x3 = b.p1_x, y3 = b.p1_y;
@@ -66,7 +66,7 @@ std::vector<Point> intersection(Line a, Line b) {
 
 std::vector<Point> intersection(Circle a, Circle b) {
     std::vector<Point> container;
-    std::cout << "Circle - Circle!\n";
+//    std::cout << "Circle - Circle!\n";
     ll x1 = a.center_x, y1 = a.center_y, r1 = a.radius;
     ll x2 = b.center_x, y2 = b.center_y, r2 = b.radius;
 
