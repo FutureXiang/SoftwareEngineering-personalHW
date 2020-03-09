@@ -40,6 +40,10 @@ public:
     Coordinate() = default;
 
     friend std::ostream &operator<<(std::ostream &os, const Coordinate &coordinate);
+
+    bool isInf() const {
+        return isNan;
+    }
 };
 
 
