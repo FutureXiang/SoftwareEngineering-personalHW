@@ -3,6 +3,7 @@
 //
 
 #include "Point.h"
+#include <cassert>
 
 ll fastGcd(ll x, ll y) {
     if (x < y)
