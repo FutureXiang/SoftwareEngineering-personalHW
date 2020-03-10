@@ -10,11 +10,11 @@ ll fastGcd(ll x, ll y) {
         return fastGcd(y, x);
     if (!y)
         return x;
-    if (x / 2 * 2 == x) {
-        if (y / 2 * 2 == y) return (fastGcd(x / 2, y / 2) * 2);
-        else return fastGcd(x / 2, y);
+    if ((x >> 1u) << 1u == x) {
+        if ((y >> 1u) << 1u == y) return (fastGcd(x >> 1u, y >> 1u) << 1u);
+        else return fastGcd(x >> 1u, y);
     } else {
-        if (y / 2 * 2 == y) return fastGcd(x, y / 2);
+        if ((y >> 1u) << 1u == y) return fastGcd(x, y >> 1u);
         else return fastGcd(y, x - y);
     }
 }
