@@ -17,8 +17,8 @@ std::vector<Point> intersection(Line a, Circle b) {
     int y1 = a.p1_y - b.center_y;
     int x2 = a.p2_x - b.center_x;
     int y2 = a.p2_y - b.center_y;
-    ll dx = x2 - x1;
-    ll dy = y2 - y1;
+    ll dx = (ll)x2 - (ll)x1;
+    ll dy = (ll)y2 - (ll)y1;
     ll dr2 = dx * dx + dy * dy;
     ll D = 1ll * x1 * y2 - 1ll * x2 * y1;
     ll D2 = D * D;
