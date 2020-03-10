@@ -25,7 +25,6 @@ class Coordinate {
 
     // use rational (if a square number) / double (if not)
 private:
-    bool isRational;
     bool isNan;
 
     void simplifyRational();
@@ -33,6 +32,7 @@ private:
     void simplifySqrt(ll add, ll coeff, ll insqrt, ll btm);
 
 public:
+    bool isRational;
     ll top, bottom;
     double value;
 
@@ -84,10 +84,22 @@ struct hashCode_Point {
 
 struct equals_Point {
     bool operator()(const Point &lhs, const Point &rhs) const {
-        std::ostringstream outstream1, outstream2;
+        /* std::ostringstream outstream1, outstream2;
         outstream1 << lhs;
         outstream2 << rhs;
-        return outstream1.str() == outstream2.str();
+        return outstream1.str() == outstream2.str(); */
+        bool x_eq = false, y_eq = false;
+        if (lhs.x.isRational) {
+            x_eq = (rhs.x.isRational & (lhs.x.top == rhs.x.top) & (lhs.x.bottom == rhs.x.bottom));
+        } else {
+            x_eq = ((!rhs.x.isRational) & ((long long)(lhs.x.value * 1e8) == (long long)(rhs.x.value * 1e8)));
+        }
+        if (lhs.y.isRational) {
+            y_eq = (rhs.y.isRational & (lhs.y.top == rhs.y.top) & (lhs.y.bottom == rhs.y.bottom));
+        } else {
+            y_eq = ((!rhs.y.isRational) & ((long long)(lhs.y.value * 1e8) == (long long)(rhs.y.value * 1e8)));
+        }
+        return x_eq & y_eq;
     }
 };
 
