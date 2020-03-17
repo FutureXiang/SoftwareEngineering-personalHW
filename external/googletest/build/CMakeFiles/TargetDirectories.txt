@@ -1,0 +1,4 @@
+/Users/xiangweilai/googletest-master/googletest/build/CMakeFiles/rebuild_cache.dir
+/Users/xiangweilai/googletest-master/googletest/build/CMakeFiles/edit_cache.dir
+/Users/xiangweilai/googletest-master/googletest/build/CMakeFiles/gtest_main.dir
+/Users/xiangweilai/googletest-master/googletest/build/CMakeFiles/gtest.dir
